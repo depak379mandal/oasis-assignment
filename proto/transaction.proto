@@ -1,0 +1,49 @@
+syntax = "proto3";
+package transactions;
+
+
+message Transaction {
+    int32 id = 1;
+    string timestamp = 2;
+    string user_id=3;
+    string crypto_name = 4;
+    int32 amount = 5;
+    string transaction_type = 6;
+}
+
+message CreateTransaction {
+    required string user_id = 1;
+    required string crypto_name = 2;
+    required int32 amount = 3;
+    required string transaction_type = 4;
+}
+
+
+message UpdateTransaction {
+    optional string user_id = 1;
+    optional string crypto_name = 2;
+    optional int32 amount = 3;
+    optional string transaction_type = 4;
+}
+
+message UpdateTransactionRequest {
+        int32 id = 1;
+        UpdateTransaction data = 2;
+    }
+
+message ID {
+        int32 id = 1;
+    }
+
+message NoValue {}
+
+message GetTransaction {
+    optional Transaction data=1;
+}
+
+service TransactionService {
+    rpc addTransaction (CreateTransaction) returns (Transaction) {}
+    rpc updateTransaction (UpdateTransactionRequest) returns (NoValue) {}
+    rpc getTransaction (ID) returns (GetTransaction) {}
+    rpc deleteTransaction (ID) returns (NoValue) {}
+}

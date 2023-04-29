@@ -1,0 +1,32 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/client-backend/src",
+  "monorepo": true,
+  "root": "apps/client-backend",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/client-backend/tsconfig.app.json"
+  },
+  "projects": {
+    "client-backend": {
+      "type": "application",
+      "root": "apps/client-backend",
+      "entryFile": "main",
+      "sourceRoot": "apps/client-backend/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/client-backend/tsconfig.app.json",
+        "assets": ["**/*.proto"],
+        "watchAssets": true
+      }
+    },
+    "db-transactions": {
+      "type": "application",
+      "root": "apps/db-transactions",
+      "entryFile": "main",
+      "sourceRoot": "apps/db-transactions/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/db-transactions/tsconfig.app.json"
+      }
+    }
+  }
+}
